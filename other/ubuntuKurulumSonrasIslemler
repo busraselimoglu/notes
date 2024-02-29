@@ -1,0 +1,137 @@
+→ Bios önyükleme temizliği
+	root@bellis:/home/busra/Masaüstü/notlar/xampp# efibootmgr
+	BootCurrent: 0003
+	Timeout: 0 seconds
+	BootOrder: 0003,0018,0002,0001,0000,0014,0015,0016,0017,0019,001A
+	Boot0000* Windows Boot Manager
+	Boot0001* ubuntu
+	Boot0002* ubuntu
+	Boot0003* ubuntu
+	Boot0010  Setup
+	Boot0011  Boot Menu
+	Boot0012  Diagnostic Splash
+	Boot0013  OilDiagApp
+	Boot0014* USB FDD:
+	Boot0015* NVMe:
+	Boot0016* ATA HDD: KIOXIA-EXCERIA SATA SSD                 
+	Boot0017* ATAPI CD:
+	Boot0018* USB HDD:
+	Boot0019* USB CD:
+	Boot001A* PCI LAN: Realtek PXE B03 D00
+	root@bellis:/home/busra/Masaüstü/notlar/xampp# sudo efibootmgr -b 0003 -B
+	BootCurrent: 0003
+	Timeout: 0 seconds
+	BootOrder: 0018,0002,0001,0000,0014,0015,0016,0017,0019,001A
+	Boot0000* Windows Boot Manager
+	Boot0001* ubuntu
+	Boot0002* ubuntu
+	Boot0010  Setup
+	Boot0011  Boot Menu
+	Boot0012  Diagnostic Splash
+	Boot0013  OilDiagApp
+	Boot0014* USB FDD:
+	Boot0015* NVMe:
+	Boot0016* ATA HDD: KIOXIA-EXCERIA SATA SSD                 
+	Boot0017* ATAPI CD:
+	Boot0018* USB HDD:
+	Boot0019* USB CD:
+	Boot001A* PCI LAN: Realtek PXE B03 D00
+
+
+→ Enable Minimize on Dock Click (Açılan pencereyi icon'a tıklayınca küçülmesi)
+	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+
+→ Install pulseaudio volume control
+	sudo apt update
+	sudo apt install pavucontrol
+	
+→ Install ubuntu-cleaner
+	sudo add-apt-repository ppa:gerardpuig/ppa
+	sudo apt update
+	sudo apt install ubuntu-cleaner
+
+→ sudo apt install gzip     => (sıkıştırma)
+
+→ sudo apt install leafpad  => (notepad)
+
+→ sudo apt install vim      => (editor)
+
+→ sudo apt install net-tools
+
+→ sudo apt install -f       =>(Kurduğumuz dosyada eksikler varsa onlar bulup yükler)
+
+→ sudo apt install curl -y  --> Böyle bir site var mı kontrol eder
+
+→ sudo apt-get install unrar -y 
+
+→ sudo apt-get install rar
+
+→ sudo apt-get install openssh-server -y
+
+→ sudo apt-get install nginx -y
+
+→ sudo snap install heroku --classic
+
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

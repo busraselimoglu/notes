@@ -1,0 +1,46 @@
+					Adminer
+
+Step 1: Update and Upgrade Ubuntu
+
+	sudo apt update && sudo apt upgrade
+	
+Step 2: Install Apache on Ubuntu
+
+	sudo apt install apache2
+	sudo systemctl enable --now apache2
+	
+Step 3: Install PHP on Ubuntu
+
+	sudo apt install php php-curl libapache2-mod-php php-cli php-mysql php-gd php-fpm
+	systemctl reload apache2
+	sudo systemctl status apache2 --no-pager -l
+	
+Step 4: Install MariaDB on Ubuntu
+
+	sudo apt install mariadb-server
+	sudo systemctl enable --now mariadb
+	sudo systemctl status mariadb
+	sudo mysql_secure_installation
+	
+Step 5: Set Admin Password for Adminer
+
+	sudo mysql
+	SET PASSWORD FOR 'root'@'localhost' = PASSWORD("my password");
+	FLUSH PRIVILEGES;
+	exit;
+	
+Step 6: Install Adminer on Ubuntu
+	
+	sudo apt install adminer
+	sudo a2enconf php*-fpm
+	sudo a2enconf adminer
+	systemctl reload apache2
+	sudo systemctl restart apache2
+	sudo systemctl status apache2 --no-pager -l
+	
+Step 7: Access the Adminer Web Interface
+
+	http://127.0.0.1/adminer
+	
+	
+	

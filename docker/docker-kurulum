@@ -1,0 +1,163 @@
+					Docker
+
+→ Install Docker Engine on Ubuntu
+     I. Install using the apt repository
+     
+        1. Set up Docker's apt repository.
+	# Add Docker's official GPG key:
+	sudo apt-get update
+	sudo apt-get install ca-certificates curl
+	sudo install -m 0755 -d /etc/apt/keyrings
+	sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+	sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+	# Add the repository to Apt sources:
+	echo \
+	  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+	  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+	  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt-get update
+
+	2. Install the Docker packages.
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	
+	3. Verify that the Docker Engine installation is successful by running the hello-world image.
+	sudo docker run hello-world
+	
+
+     II. Install from a package
+     
+	If you can't use Docker's apt repository to install Docker Engine, you can download the deb file for your release and install it
+	manually. You need to download a new file each time you want to upgrade Docker Engine.
+
+	1. Go to https://download.docker.com/linux/ubuntu/dists/.
+
+	2. Select your Ubuntu version in the list.
+
+	3. Go to pool/stable/ and select the applicable architecture (amd64, armhf, arm64, or s390x).
+
+	4. Download the following deb files for the Docker Engine, CLI, containerd, and Docker Compose packages:
+		• containerd.io_<version>_<arch>.deb
+		• docker-ce_<version>_<arch>.deb
+		• docker-ce-cli_<version>_<arch>.deb
+		• docker-buildx-plugin_<version>_<arch>.deb
+		• docker-compose-plugin_<version>_<arch>.deb
+		
+	5. Install the .deb packages. Update the paths in the following example to where you downloaded the Docker packages.
+
+		 sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
+		  ./docker-ce_<version>_<arch>.deb \
+		  ./docker-ce-cli_<version>_<arch>.deb \
+		  ./docker-buildx-plugin_<version>_<arch>.deb \
+		  ./docker-compose-plugin_<version>_<arch>.deb
+		  
+		The Docker daemon starts automatically.
+
+	6. Verify that the Docker Engine installation is successful by running the hello-world image.
+
+		 sudo service docker start
+		 sudo docker run hello-world
+		 
+		This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message
+		and exits.
+		
+		
+		
+		
+→ Install Docker Desktop
+
+Recommended approach to install Docker Desktop on Ubuntu:
+
+1. Set up Docker's package repository. See step one of Install using the apt repository.
+
+2. Download latest DEB package. --> https://desktop.docker.com/linux/main/amd64/139021/docker-desktop-4.28.0-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64&_gl=1*s7tjx0*_ga*MTAyMDY3MTU3MS4xNzA5MDY1MTQ2*_ga_XJWPQMJYHQ*MTcwOTA2NTE0NS4xLjEuMTcwOTA2Njg4MC42MC4wLjA.
+
+3. Install the package with apt as follows:
+
+	 sudo apt-get update
+	 sudo apt-get install ./docker-desktop-<version>-<arch>.deb
+
+
+→ Launch Docker Desktop
+
+• systemctl --user start docker-desktop
+
+• docker compose version
+  Docker Compose version v2.17.3
+
+• docker --version
+  Docker version 23.0.5, build bc4487a
+
+• docker version
+  Client: Docker Engine - Community
+  Cloud integration: v1.0.31
+  Version:           23.0.5
+  API version:       1.42
+  <...>
+  
+• systemctl --user enable docker-desktop
+
+• systemctl --user stop docker-desktop
+
+
+
+-------------------------Docker Desktop sign in -------------------------
+Error: Unable to log in. You must initialize pass before logging in to Docker Desktop
+
+busra@bellis:~$ gpg --full-generate-key
+gpg (GnuPG) 2.2.27; Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Lütfen istediğiniz anahtarı seçiniz:
+   (1) RSA ve RSA (varsayılan)
+   (2) DSA ve Elgamal
+   (3) DSA (yalnız imzalamak için)
+   (4) RSA (sadece imzalamak için)
+  (14) Existing key from card
+Seçiminiz? 1
+RSA anahtarları 1024 bit ile 4096 bit arasında olmalı.
+İstediğiniz anahtar uzunluğu nedir? (3072) 3072
+İstenen anahtar uzunluğu: 3072 bit
+Lütfen anahtarın ne kadar süreyle geçerli olacağını belirtin.
+         0 = anahtar süresiz geçerli
+      <n>  = anahtar n gün geçerli
+      <n>w = anahtar n hafta geçerli
+      <n>m = anahtar n ay geçerli
+      <n>y = anahtar n yıl geçerli
+Anahtar ne kadar geçerli olacak? (0) 0
+Anahtar hep geçerli olacak
+Bu doğru mu? (e/H ya da y/N) y
+
+GnuPG anahtarınızı betimlemek için bir kullanıcı kimliği oluşturmaya ihtiyaç duyuyor.
+
+Adınız ve Soyadınız: busra
+E-posta adresiniz: busra@gmail.com
+Önbilgi: 
+Seçtiğiniz KULLANICI-KİMLİĞİ:
+    "busra <busra@gmail.com>"
+
+(A)dı ve Soyadı, (Y)orum, (E)posta alanlarını değiştir ya da (T)amam/Çı(k)? T
+Bir miktar rasgele bayt üretilmesi gerekiyor. İlk üretim sırasında biraz
+hareket (klavyeyi kullanmak, fareyi hareket ettirmek, disklerden yararlanmak)
+iyi olacaktır; bu yeterli rasgele bayt kazanmak için rasgele sayı
+üretecine yardımcı olur.
+Bir miktar rasgele bayt üretilmesi gerekiyor. İlk üretim sırasında biraz
+hareket (klavyeyi kullanmak, fareyi hareket ettirmek, disklerden yararlanmak)
+iyi olacaktır; bu yeterli rasgele bayt kazanmak için rasgele sayı
+üretecine yardımcı olur.
+gpg: anahtar xxxxxxxxxxxxxxxx son derece güvenli olarak imlendi.
+gpg: directory '/home/busra/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/busra/.gnupg/openpgp-revocs.d/888XXXXXXXX88XXXXXXXX88888XXXXXXXXXXXXXX.rev'
+genel ve gizli anahtar üretildi ve imzalandı.
+
+pub   rsa3072 2024-02-26 [SC]
+      888XXXXXXXX88XXXXXXXX88888XXXXXXXXXXXXXX
+uid                      busraselimoglu <busra.selimogluu@gmail.com>
+sub   rsa3072 2024-02-26 [E]
+
+
+busra@bellis:~$ export GPGKEY=<xxxxxxxxxxxxxxxx>
+busra@bellis:~$ pass init 888XXXXXXXX88XXXXXXXX88888XXXXXXXXXXXXXX
+
+Daha sonra Docker Desktop uygulamasını yeniden başlatı ve sign in butonuna tıklayın

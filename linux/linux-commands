@@ -1,0 +1,14 @@
+-----------------------------Services------------------------------
+
+→ Başlatılamayan sistem hizmetlerini bulmak için;
+	systemctl --failed
+	
+→ Systemd-modules-load hizmetiyle ilgili bir sorun bulundu. Daha fazlasını bilmek için;
+	systemctl status systemd-modules-load  
+	
+→ Başarısız mesajı yeniden oluşturmak gerekirse hizmeti yeniden başlatın;
+	systemctl restart systemd-modules-load
+
+→ Çalışan tüm servisleri görüntüleme	
+	systemctl list-units --type service --state running
+--------------------------------------------------------------------------
