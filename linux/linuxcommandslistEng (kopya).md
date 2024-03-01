@@ -1,4 +1,4 @@
-Dosya Adı : linux/linuxcommandslistEng.txt
+Dosya Adı : linux/linuxcommandslistEng.md
 
 
 
@@ -25,48 +25,54 @@ fsck /dev/[device_name]				| Run a disk check on an unmounted disk or partition.
 -------------------------------------------------------------------------
 													Searching Commands
 
-find [path] -name [search_pattern]							→ Find files and directories that match the specified pattern in a specified location.
-find [path] -size [+100M]												→ See files and directories larger than a specified size in a directory.
-grep [search_pattern] [file_name]								→ Search for a specific pattern in a file with grep.
-grep -r [search_pattern] [directory_name]				→ Recursively search for a pattern in a directory.
-locate [name]																		→ Locate all files and directories related to a particular name.
-which [command]																	→ Search the command path in the $PATH environment variable.
-whereis [command]																→ Use the whereis command to find the source, binary, and manual page for a command.
-awk '[search_pattern] {print $0}' [file_name]		→ Print all lines matching a pattern in a file. 
-sed 's/[old_text]/[new_text]/' [file_name]			→ Find and replace text in a specified file.
+|			Command                                 | 				Description
+:--------------------------------------------------:|:----------------------------------------------------------------------------:
+
+find [path] -name [search_pattern]					| Find files and directories that match the specified pattern in a specified location.
+find [path] -size [+100M]							| See files and directories larger than a specified size in a directory.
+grep [search_pattern] [file_name]					| Search for a specific pattern in a file with grep.
+grep -r [search_pattern] [directory_name]			| Recursively search for a pattern in a directory.
+locate [name]										| Locate all files and directories related to a particular name.
+which [command]										| Search the command path in the $PATH environment variable.
+whereis [command]									| Use the whereis command to find the source, binary, and manual page for a command.
+awk '[search_pattern] {print $0}' [file_name]		| Print all lines matching a pattern in a file. 
+sed 's/[old_text]/[new_text]/' [file_name]			| Find and replace text in a specified file.
 
 
 -------------------------------------------------------------------------
 													File Commands
 
-mkdir [directory_name]																→ Create a new directory.
-rm [file_name]																				→ Remove a file.
-rm -r [directory_name]																→ Remove a directory recursively.
-rm -rf [directory_name]																→ Recursively remove a directory without requiring confirmation.
-cp [source_file] [destination_file]										→ Copy the contents of one file to another file using the cp command.
-cp -r [source_directory] [destination_directory]			→ Recursively copy a directory to a second directory.
-mv [source_file] [destination_file]										→ Move or rename files or directories.
-ln -s [path]/[file_name] [link_name]									→ Create a symbolic link to a file.
-touch [file_name]																			→ Create a new file using touch.
-cat [file_name]																				→ Show the contents of a file.
-cat [source_file] >> [destination_file]								→ Append file contents to another file.
-head [file_name]																			→ Show the first ten lines of a file.
-tail [file_name]																			→ Show the last ten lines of a file with the tail command.
-more [file_name]																			→ Display contents of a file page by page.
-less [file_name]																			→ Show the contents of a file with navigation using the less command.
-nano [file_name]																			→ Open or create a file using the nano text editor.
-vi [file_name]																				→ Open or create a file using the Vi/Vim text editor.
-vim [file_name]																				→ Open or create a file using the Vi/Vim text editor.
-gpg -c [file_name]																		→ Encrypt a file.
-gpg [file_name].gpg																		→ Decrypt an encrypted .gpg file.
-wc -w [file_name]																			→ Show the number of words, lines, and bytes in a file using wc.
-ls | xargs wc																					→ List the number of lines/words/characters in each file in a directory with the xargs command.
-cut -d [delimiter] [file_name]												→ Cut a section of a file and print the result to standard output.
-[data] | cut -d [delimiter]														→ Cut a section of piped data and print the result to standard output.
-shred -u [file_name]																	→ Overwrite a file to prevent its recovery, then delete it.
-diff [first_file] [second_file]												→ Compare two files and display differences.
-source [file_name]																		→ Read and execute the file content in the current shell.
-[command] | tee [file_name] >/dev/null								→ Store the command output in a file and skip the terminal output.
+
+|			Command                             | 				Description
+:----------------------------------------------:|:----------------------------------------------------------------------------:
+mkdir [directory_name]							| Create a new directory.
+rm [file_name]									| Remove a file.
+rm -r [directory_name]							| Remove a directory recursively.
+rm -rf [directory_name]							| Recursively remove a directory without requiring confirmation.
+cp [source_file] [destination_file]				| Copy the contents of one file to another file using the cp command.
+cp -r [source_directory] [destination_directory]| Recursively copy a directory to a second directory.
+mv [source_file] [destination_file]				| Move or rename files or directories.
+ln -s [path]/[file_name] [link_name]			| Create a symbolic link to a file.
+touch [file_name]								| Create a new file using touch.
+cat [file_name]									| Show the contents of a file.
+cat [source_file] >> [destination_file]			| Append file contents to another file.
+head [file_name]								| Show the first ten lines of a file.
+tail [file_name]								| Show the last ten lines of a file with the tail command.
+more [file_name]								| Display contents of a file page by page.
+less [file_name]								| Show the contents of a file with navigation using the less command.
+nano [file_name]								| Open or create a file using the nano text editor.
+vi [file_name]									| Open or create a file using the Vi/Vim text editor.
+vim [file_name]									| Open or create a file using the Vi/Vim text editor.
+gpg -c [file_name]								| Encrypt a file.
+gpg [file_name].gpg								| Decrypt an encrypted .gpg file.
+wc -w [file_name]								| Show the number of words, lines, and bytes in a file using wc.
+ls | xargs wc									| List the number of lines/words/characters in each file in a directory with the xargs command.
+cut -d [delimiter] [file_name]					| Cut a section of a file and print the result to standard output.
+[data] | cut -d [delimiter]						| Cut a section of piped data and print the result to standard output.
+shred -u [file_name]							| Overwrite a file to prevent its recovery, then delete it.
+diff [first_file] [second_file]					| Compare two files and display differences.
+source [file_name]								| Read and execute the file content in the current shell.
+[command] | tee [file_name] >/dev/null			| Store the command output in a file and skip the terminal output.
 
 
 -------------------------------------------------------------------------
