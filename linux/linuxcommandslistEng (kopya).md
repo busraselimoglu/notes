@@ -2,7 +2,7 @@ Dosya Adı : linux/linuxcommandslistEng.txt
 
 
 -------------------------------------------------------------------------
-				Hardware Information Commands 
+			        	Hardware Information Commands 
 
 |			Command                 | 				Description
 :----------------------------------:|:----------------------------------------------------------------------------:
