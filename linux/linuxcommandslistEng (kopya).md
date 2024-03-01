@@ -75,7 +75,7 @@ source [file_name]								| Read and execute the file content in the current she
 
 
 -------------------------------------------------------------------------
-									Directory Navigation Commands
+					Directory Navigation Commands
 
 |			Command                             | 				Description
 :----------------------------------------------:|:----------------------------------------------------------------------------:
@@ -91,7 +91,7 @@ cd [directory_path]				                |  Change location to a specified directo
 dirs											|  Show current directory stack.
 
 -------------------------------------------------------------------------
-											File Compression Commands
+						File Compression Commands
 
 |			Command                                 | 				Description
 :--------------------------------------------------:|:----------------------------------------------------------------------------:
@@ -104,15 +104,15 @@ bzip2 [file_name]									| Compress or decompress .bz2 files.
 bunzip2 [file_name.bz2]								| Compress or decompress .bz2 files.
 
 -------------------------------------------------------------------------
-												File Transfer Commands
+						File Transfer Commands
 
 |			Command                             | 				Description
 :----------------------------------------------:|:----------------------------------------------------------------------------:
-wget [link]																										| Download files from FTP or web servers via the wget command.
-curl -O [link]																								| Transfer data to or from a server with various protocols using the curl command.
-ftp [remote_host]																							| Transfer files between local and remote systems interactively using FTP.
-sftp [user]@[remote_host]																			| Securely transfer between local and remote hosts using SFTP.
-scp [source_file] [user]@[remote_host]:[destination_path]			| Copy a file to a server directory securely using the Linux scp command.
+wget [link]		| Download files from FTP or web servers via the wget command.
+curl -O [link]	| Transfer data to or from a server with various protocols using the curl command.
+ftp [remote_host]	| Transfer files between local and remote systems interactively using FTP.
+sftp [user]@[remote_host]	| Securely transfer between local and remote hosts using SFTP.
+scp [source_file] [user]@[remote_host]:[destination_path]		| Copy a file to a server directory securely using the Linux scp command.
 rsync -a [source_directory] [user]@[remote_host]:[destination_directory]	| Synchronize the contents of a directory with a backup directory using the rsync command.
 
 -------------------------------------------------------------------------
