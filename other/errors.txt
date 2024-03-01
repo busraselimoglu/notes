@@ -1,3 +1,5 @@
+Dosya Yolu: other/errors.txt
+
 → apache2.service failed 
 
 × apache2.service - The Apache HTTP Server

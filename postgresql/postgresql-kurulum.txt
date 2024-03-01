@@ -1,3 +1,5 @@
+Dosya Yolu: postgresql/postgresql-kurulum.txt
+
 
 → PostgreSQL Kurulumu
 

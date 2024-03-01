@@ -1,1 +1,1 @@
-cat adminer/adminer-kurulum docker/docker-bootcamp docker/docker-kurulum linux/linux-commands other/errors other/ubuntuKurulumSonrasIslemler postgresql/postgresql-kurulum xampp/xampp-kurulum > allNotes.txt
+cat adminer/adminer-kurulum.txt docker/docker-bootcamp.txt docker/docker-kurulum.txt linux/linux-commands.txt linux/linuxcommandslistEng.txt linux/linuxcommandslistTurkish.txt other/errors.txt other/ubuntuKurulumSonrasIslemler.txt postgresql/postgresql-kurulum.txt xampp/xampp-kurulum.txt > allNotes.txt

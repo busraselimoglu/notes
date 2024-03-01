@@ -1,3 +1,6 @@
+Dosya Yolu: linux/linux-commands.txt
+
+
 -----------------------------Services------------------------------
 
 → Başlatılamayan sistem hizmetlerini bulmak için;

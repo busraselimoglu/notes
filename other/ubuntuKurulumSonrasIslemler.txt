@@ -1,3 +1,6 @@
+Dosya Yolu: other/ubuntuKurulumSonrasIslemler.txt
+
+
 → Bios önyükleme temizliği
 	root@bellis:/home/busra/Masaüstü/notlar/xampp# efibootmgr
 	BootCurrent: 0003

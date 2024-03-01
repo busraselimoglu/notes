@@ -1,3 +1,6 @@
+Dosya Yolu: xampp/xampp-kurulum.txt				
+				
+				
 				XAMPP
 
 https://www.apachefriends.org/tr/index.html

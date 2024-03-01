@@ -1,3 +1,5 @@
+Dosya Yolu: docker/docker-kurulum.txt
+					
 					Docker
 
 → Install Docker Engine on Ubuntu

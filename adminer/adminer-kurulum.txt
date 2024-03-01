@@ -1,3 +1,5 @@
+Dosya Yolu : adminer/adminer-kurulum.txt					
+					
 					Adminer
 
 Step 1: Update and Upgrade Ubuntu
