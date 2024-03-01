@@ -175,7 +175,7 @@ flatpak install [package_name]	| Install a Flatpak package.
 flatpak search [keyword]	| Search for a Flatpak application in repositories.
 flatpak list				| List installed Flatpack packages.
 
-
+-------------------------------------------------------------------------
 tar -zxvf [file_name.tar.gz]
 cd [extracted_directory]							Install software from source code.
 ./configure make
