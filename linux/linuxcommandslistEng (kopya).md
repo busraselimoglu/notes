@@ -5,22 +5,22 @@ Dosya Adı : linux/linuxcommandslistEng.md
 			        	            Hardware Information Commands 
 
 
-|			Command                 | 				Description
-:----------------------------------:|:----------------------------------------------------------------------------:
-lscpu								| See CPU information.
-lsblk								| See information about block devices.
-lspci -tv							| Show PCI devices (graphics card, network card, etc.) in a tree-like diagram.
-lsusb -tv							| Display USB devices in a tree-like diagram.
-lshw								| List hardware configuration information.
-cat /proc/cpuinfo					| Show detailed CPU information.
-cat /proc/meminfo					| View detailed system memory information.
-cat /proc/mounts					| See mounted file systems.
-free -h								| Display free and used memory.
-sudo dmidecode						| Show hardware information from the BIOS.
-hdparm -i /dev/[device_name]		| Display disk data information.
-hdparm -tT /dev/[device_name]		| Conduct a read speed test on the device/disk.
-badblocks -s /dev/[device_name]		| Test for unreadable blocks on the device/disk.
-fsck /dev/[device_name]				| Run a disk check on an unmounted disk or partition.
+|			Command                               | 				Description
+:------------------------------------------------:|:----------------------------------------------------------------------------:
+lscpu								              | See CPU information.
+lsblk								              | See information about block devices.
+lspci -tv							              | Show PCI devices (graphics card, network card, etc.) in a tree-like diagram.
+lsusb -tv							              | Display USB devices in a tree-like diagram.
+lshw								              | List hardware configuration information.
+cat /proc/cpuinfo					              | Show detailed CPU information.
+cat /proc/meminfo					              | View detailed system memory information.
+cat /proc/mounts					              | See mounted file systems.
+free -h								              | Display free and used memory.
+sudo dmidecode						              | Show hardware information from the BIOS.
+hdparm -i /dev/[device_name]		              | Display disk data information.
+hdparm -tT /dev/[device_name]		              | Conduct a read speed test on the device/disk.
+badblocks -s /dev/[device_name]		              | Test for unreadable blocks on the device/disk.
+fsck /dev/[device_name]				              | Run a disk check on an unmounted disk or partition.
 
 -------------------------------------------------------------------------
 				                          Searching Commands
