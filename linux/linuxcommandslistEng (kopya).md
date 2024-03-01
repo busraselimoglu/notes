@@ -77,37 +77,43 @@ source [file_name]								| Read and execute the file content in the current she
 -------------------------------------------------------------------------
 									Directory Navigation Commands
 
-ls												→ List files and directories in the current directory.
-ls -a											→ List all files and directories in the current directory (shows hidden files).
-ls -l											→ List files and directories in long format.
-pwd												→ Show the directory you are currently working in.
-cd												→ Change directory to $HOME.
-cd ~											→ Change directory to $HOME.
-cd ..											→ Move up one directory level.
-cd -											→ Change to the previous directory.
-cd [directory_path]				→ Change location to a specified directory.
-dirs											→ Show current directory stack.
+|			Command                             | 				Description
+:----------------------------------------------:|:----------------------------------------------------------------------------:
+ls												| List files and directories in the current directory.
+ls -a											| List all files and directories in the current directory (shows hidden files).
+ls -l											| List files and directories in long format.
+pwd												| Show the directory you are currently working in.
+cd												| Change directory to $HOME.
+cd ~											| Change directory to $HOME.
+cd ..											| Move up one directory level.
+cd -											| Change to the previous directory.
+cd [directory_path]				                |  Change location to a specified directory.
+dirs											|  Show current directory stack.
 
 -------------------------------------------------------------------------
 											File Compression Commands
 
-tar -cf [archive.tar] [file/directory]				→ Archive an existing file or directory.
-tar -xf [archive.tar]													→ Extract an archived file.
-tar -czf [archive.tar.gz]											→ Create a .gz compressed tar archive.
-gzip [file_name]															→ Compress or decompress .gz files.
-gunzip [file_name.gz]													→ Compress or decompress .gz files.
-bzip2 [file_name]															→ Compress or decompress .bz2 files.
-bunzip2 [file_name.bz2]												→ Compress or decompress .bz2 files.
+|			Command                                 | 				Description
+:--------------------------------------------------:|:----------------------------------------------------------------------------:
+tar -cf [archive.tar] [file/directory]				| Archive an existing file or directory.
+tar -xf [archive.tar]								| Extract an archived file.
+tar -czf [archive.tar.gz]							| Create a .gz compressed tar archive.
+gzip [file_name]									| Compress or decompress .gz files.
+gunzip [file_name.gz]								| Compress or decompress .gz files.
+bzip2 [file_name]									| Compress or decompress .bz2 files.
+bunzip2 [file_name.bz2]								| Compress or decompress .bz2 files.
 
 -------------------------------------------------------------------------
 												File Transfer Commands
 
-wget [link]																										→ Download files from FTP or web servers via the wget command.
-curl -O [link]																								→ Transfer data to or from a server with various protocols using the curl command.
-ftp [remote_host]																							→ Transfer files between local and remote systems interactively using FTP.
-sftp [user]@[remote_host]																			→ Securely transfer between local and remote hosts using SFTP.
-scp [source_file] [user]@[remote_host]:[destination_path]			→ Copy a file to a server directory securely using the Linux scp command.
-rsync -a [source_directory] [user]@[remote_host]:[destination_directory]	→ Synchronize the contents of a directory with a backup directory using the rsync command.
+|			Command                             | 				Description
+:----------------------------------------------:|:----------------------------------------------------------------------------:
+wget [link]																										| Download files from FTP or web servers via the wget command.
+curl -O [link]																								| Transfer data to or from a server with various protocols using the curl command.
+ftp [remote_host]																							| Transfer files between local and remote systems interactively using FTP.
+sftp [user]@[remote_host]																			| Securely transfer between local and remote hosts using SFTP.
+scp [source_file] [user]@[remote_host]:[destination_path]			| Copy a file to a server directory securely using the Linux scp command.
+rsync -a [source_directory] [user]@[remote_host]:[destination_directory]	| Synchronize the contents of a directory with a backup directory using the rsync command.
 
 -------------------------------------------------------------------------
 												User and Group Commands
