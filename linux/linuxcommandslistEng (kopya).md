@@ -3,11 +3,11 @@ Dosya Adı : linux/linuxcommandslistEng.txt
 
 -------------------------------------------------------------------------
 						Hardware Information Commands 
-						
-			Command                 | 				Description
+
+|			Command                 | 				Description
 :----------------------------------:|:----------------------------------------------------------------------------:
-lscpu								| See CPU information.
-lsblk								| See information about block devices.
+| lscpu								| See CPU information.
+| lsblk								| See information about block devices.
 lspci -tv							| Show PCI devices (graphics card, network card, etc.) in a tree-like diagram.
 lsusb -tv							| Display USB devices in a tree-like diagram.
 lshw								| List hardware configuration information.
