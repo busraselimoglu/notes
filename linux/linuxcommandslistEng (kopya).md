@@ -2,7 +2,7 @@ Dosya Adı : linux/linuxcommandslistEng.md
 
 
 
-			        	Hardware Information Commands 
+			        	            Hardware Information Commands 
 
 
 |			Command                 | 				Description
@@ -27,7 +27,6 @@ fsck /dev/[device_name]				| Run a disk check on an unmounted disk or partition.
 
 |			Command                                 | 				Description
 :--------------------------------------------------:|:-----------------------------------------------------------------------:
-
 find [path] -name [search_pattern]					| Find files and directories that match the specified pattern in a specified location.
 find [path] -size [+100M]							| See files and directories larger than a specified size in a directory.
 grep [search_pattern] [file_name]					| Search for a specific pattern in a file with grep.
@@ -40,7 +39,7 @@ sed 's/[old_text]/[new_text]/' [file_name]			| Find and replace text in a specif
 
 
 -------------------------------------------------------------------------
-					                 File Commands
+					                    File Commands
 
 
 |			Command                             | 				Description
