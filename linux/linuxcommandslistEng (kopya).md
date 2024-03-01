@@ -66,7 +66,7 @@ vim [file_name]									| Open or create a file using the Vi/Vim text editor.
 gpg -c [file_name]								| Encrypt a file.
 gpg [file_name].gpg								| Decrypt an encrypted .gpg file.
 wc -w [file_name]								| Show the number of words, lines, and bytes in a file using wc.
-'ls | xargs wc'									| List the number of lines/words/characters in each file in a directory with the xargs command.
+ls \| xargs wc									| List the number of lines/words/characters in each file in a directory with the xargs command.
 cut -d [delimiter] [file_name]					| Cut a section of a file and print the result to standard output.
 [data] | cut -d [delimiter]						| Cut a section of piped data and print the result to standard output.
 shred -u [file_name]							| Overwrite a file to prevent its recovery, then delete it.
