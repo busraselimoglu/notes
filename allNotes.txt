@@ -1,0 +1,922 @@
+					Adminer
+
+Step 1: Update and Upgrade Ubuntu
+
+	sudo apt update && sudo apt upgrade
+	
+Step 2: Install Apache on Ubuntu
+
+	sudo apt install apache2
+	sudo systemctl enable --now apache2
+	
+Step 3: Install PHP on Ubuntu
+
+	sudo apt install php php-curl libapache2-mod-php php-cli php-mysql php-gd php-fpm
+	systemctl reload apache2
+	sudo systemctl status apache2 --no-pager -l
+	
+Step 4: Install MariaDB on Ubuntu
+
+	sudo apt install mariadb-server
+	sudo systemctl enable --now mariadb
+	sudo systemctl status mariadb
+	sudo mysql_secure_installation
+	
+Step 5: Set Admin Password for Adminer
+
+	sudo mysql
+	SET PASSWORD FOR 'root'@'localhost' = PASSWORD("my password");
+	FLUSH PRIVILEGES;
+	exit;
+	
+Step 6: Install Adminer on Ubuntu
+	
+	sudo apt install adminer
+	sudo a2enconf php*-fpm
+	sudo a2enconf adminer
+	systemctl reload apache2
+	sudo systemctl restart apache2
+	sudo systemctl status apache2 --no-pager -l
+	
+Step 7: Access the Adminer Web Interface
+
+	http://127.0.0.1/adminer
+	
+	
+	
+
+========= 
+Bare-Metal (Windows 10) 
+Virtual Machine ()
+Container
+
+-------------------------- 
+Docker Nedir ?
+LXC : LinuX Containers LXC () Linux Container üzerine kurulu bir container yapısıdır.
+Docker 2008 Yılında Soloman Hykes 
+2013 Docker Kuruldu 
+2014 Docker 1.0
+2015 Docker Swarm (Orchestration)
+Go diliyle 
+Open source
+DotCloud =>  Docker INC
+
+Docker CE Major 6, Destek sağlanıyor
+Docker EE Major 12-18 ay, Destek sağlanıyor
+
+Docker 
+---------------
+Hızlı Derleme 
+Dağıtım 
+Paket Sistemei
+Ölçeklendirme (Orch...)
+Test Etme
+
+Docker Hub : Image Al/Ver
+
+Docker Platform 
+Windows, Linux, MAcOS
+
+------------------------------
+docker version 
+docker -v
+docker --version 
+
+docker info
+
+docker --help
+docker image --help
+
+docker -v
+mvn -v 
+java --version 
+node -v
+
+docker run hello-world
+docker container run hello-world
+
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+docker search nginx 
+docker pull   nginx
+docker pull   nginx:latest
+docker pull   nginx:1.15
+
+
+docker pull ubuntu
+docker pull alpine
+docker pull centos
+docker pull mysql
+docker pull httpd
+
+------------------------------------
+-- Container --
+docker container run --publish   1111:80 nginx (publish: reverse proxy port)
+docker container run --publish   2222:80 --detach nginx (detach: arka planda çalış lütfen)
+docker container run -p   3333:80 -d nginx
+docker container run -p 4444:80 -d --name techcareer nginx (name: container adını yazdırmak)
+
+------------------------------------
+-- Image --
+docker image --help 
+docker image ls
+docker image prune (prune: kullanılmayan bütün image'leri sil)
+
+
+
+------------------------------------
+-- List--
+docker container ls 
+docker container ls -a
+docker container ps 
+docker ps 
+
+------------------------------------
+-- Start/Stop --
+docker container stop containerID
+docker container stop containerNAME
+docker container stop 0023a98fc505
+docker container start 0023a98fc505
+
+------------------------------------
+-- Delete --
+docker container rm  0023a98fc505
+docker container rm -f 266f629d9bc0 (f: stop yapmadan sil)
+docker container rm -f 0023a98fc505 e5fd3be3f3d7
+docker container prune (prune: Çalışmayan bütün containerleri sil)
+
+------------------------------------
+-- Monitoring --
+docker ps
+docker container logs container_ID
+docker container logs container_NAME
+docker container logs techcareer
+docker container logs --details techcareer
+docker container logs --tail 5 techcareer (son 5 log'u göster)
+docker container logs -f  techcareer (f: follow)
+
+------------------------------------
+-- LOGS TIS --
+t: top: çalışan processler 
+i: inspect detaylı nbilgi 
+s:stats: performan bilgi(kaynak tüketimi)
+
+docker container ls 
+docker container ps 
+docker container top techcareer 
+docker container inspect techcareer 
+docker container stats techcareer 
+
+------------------------------------
+docker search ubuntu 
+docker pull ubuntu
+
+alpine => sh 
+ubuntu => bash 
+window => powershell 
+
+-- Terminal --
+## Yeni bir container oluştur ve ona bağlan
+docker container run -it -p 1111:80 --name techcareer ubuntu bash
+winpty docker container run -it -p 1111:80 --name techcareer ubuntu bash
+i: interactive 
+t: terminal
+
+docker ps 
+## Çalışan bir container üzerinden terminale bağlanacağım. 
+docker container exec -it containerID bash
+
+
+## Kapatılmış container üzerinden terminale bağlanacağım. 
+docker container start -ai containerID
+
+Examples
+docker search nginx 
+docker pull nginx 
+docker image ls 
+
+--rm: container stop yaptığınızda otomatik silinir.
+docker container run  -p 7777:80 nginx
+docker container run -d -p 7777:80 nginx
+docker container run -d -p 7777:80 --name web2 nginx
+docker container run -p 7777:80 --name web2 --rm nginx
+docker container run -d -p 7777:80 --name web2 --rm nginx
+
+docker container exec -it web2 bash
+cat > usr/share/nginx/html/index.html 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Nasılsınız Lorem, ipsum.</p>
+</body>
+</html>
+
+
+------------------------------------
+-- Mount --
+Verilerimizin container dışında güvenl, bir limanda tutmak istiyorsak,  persist data kullanmak zorundayız
+1- Volume (Production)  ***(Contaniner dışında özel bir yerde saklansın)
+2- Bind Mound (Test) :Host sistemi üzerinde container içinde saklanıyor.
+
+Database (Veri tabanı)
+Log 
+xml 
+json 
+
+volume     : -v  
+bind mound : -v 
+
+------------------------------------
+-- Bind Mound --
+docker search nginx 
+docker pull nginx 
+
+index.html
+----------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Nasılsınız Ben bir Bind Mound Datasıyım.</p>
+</body>
+</html> 
+
+
+docker container run -d -p 6666:80 -v TaşınmasınıIstediğimDosyaYer:OrijinalDosyaYeri nginx
+sudo docker container run  -d --rm -p 2222:80 --name bind_nginx -v /home/hamit/Desktop/websitem:/usr/share/nginx/html nginx
+
+------------------------------------
+-- Volume --
+$ docker volume --help
+$ docker volume create volumeName
+$ docker volume ls 
+$ docker volume inspect volumeName
+$ docker volume prune 
+$ docker volume rm 
+
+Mountpoint : Volume fiziksel olarak bulunduğu yer demektir.
+"Mountpoint": "/var/lib/docker/volumes/volumeName/_data",
+
+
+$ mintty docker container run -it -v volumeName:/webpages ubuntu sh
+$ mintty docker container run -it -v volumeName:/webpages alpine sh
+$ docker volume ls
+$ docker volume inspect volumeName
+
+$ cd /webpages 
+$ cat >> index.html
+-----------------------
+### index.html ###
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Nasılsınız Ben Bir Volume Datasıyım.</p>
+</body>
+</html> 
+$ exit 
+
+
+------------------------------------
+-- Volume --
+Docker - Volume - Mysql
+
+docker ps 
+docker ps -a
+docker container rm -f dockerID
+
+docker search mysql
+docker pull mysql/mysql-server:latest 
+docker ps 
+docker ps -a
+docker image ls 
+netstat -nlptu
+
+docker volume ls 
+docker volume rm volumeName1 volumeName2 volumeName3
+docker volume --help
+docker create -v /var/lib/mysql --name mysqldatabase mysql/mysql-server:latest
+docker volume ls
+docker ps  -a 
+Mysql Container ID:8f30d2f90670  
+Mysql Container NAME: mysqldatabase
+
+docker ps -a 
+docker container run -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=root --volumes-from mysqldatabase --name=mysqldb mysql/mysql-server:latest
+winpty docker container exec -it mysqldb bash
+mysql -uroot -p
+root
+SHOW DATABASES;
+
+CREATE SCHEMA `spa` DEFAULT CHARACTER SET utf8 ;
+use volume;
+CREATE TABLE `spa`.`blog` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(250) NULL,
+  `content` VARCHAR(250) NULL,
+  `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
+
+  INSERT INTO `spa`.`blog` (`title`, `content`) VALUES ('title-1', 'content-1');
+  INSERT INTO `spa`.`blog` (`title`, `content`) VALUES ('title-2', 'content-2');
+  SELECT * FROM spa.blog;
+  SHOW DATABASES;
+
+exit (Mysql)
+exit (Bash terminal)
+
+docker container rm -f mysqldb
+docker container run -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=root --volumes-from mysqldatabase --name=mysqldatabasenew mysql/mysql-server:latest
+winpty docker container exec -it mysqldatabasenew bash
+mysql -uroot -p
+root
+SHOW DATABASES;
+
+------------------------------------
+-- Image Oluşturmak --
+docker login
+
+docker image --help
+docker image ls 
+docker image tag --help 
+
+DockerHub Repository Name: javahamitmizrak/spring_react_blog
+imageName: Oluşturduğumuz DockerFile veya docker-compose.yml'da veya daha önceden pull yaptığımız image adları.
+
+docker image tag imageName javahamitmizrak/spring_react_blog
+docker image tag my_spring_react:latest javahamitmizrak/spring_react_blog
+
+docker push javahamitmizrak/spring_react_blog
+docker image ls 
+docker image rm imageName
+docker pull javahamitmizrak/spring_react_blog
+docker logout
+
+------------------------------------
+-- Docker Swarm (orchestraction) --
+K8S - Docker Swarm (Birden fazla  container yönetiminde)
+
+Docker Swarm (Docker Engine içerisinde )
+docker info 
+Eğer Swarm inacative görünmüyorsa =>   
+docker swarm leave --force
+docker swarm init
+
+Manager - Worker 
+docker swarm --help
+
+docker swarm init (active et)
+docker swarm leave (Swarm Kapat)
+docker swarm update (Swarm Güncellemek)
+
+docker swarm node ls 
+
+------------------------------------
+-- Service --
+docker service --help  (service: çalışan container kapandığında otomatik olarak açsın ve o container sürekli çalışsın)
+docker service ls 
+docker service ps ID 
+docker service rm ID 
+docker container rm -f containerID
+
+Manager Node Raft Consensus Algoritması
+N-1/2
+
+
+
+------------------------------------
+-- Swarm  --
+Orchestration
+https://labs.play-with-docker.com/
+
+docker info
+docker swarm init (active et)
+docker swarm leave (Swarm Kapat)
+docker swarm update (Swarm Güncellemek)
+docker swarm node ls 
+
+Ctrl+ Insert tuşu (Copy)
+Shift+ Insert tuşu (Pase)
+
+1.ADIM 
+-------------
+5 tane instance oluştur. 
+ifconfig ile ip adresini gördüm
+
+Herhangi bir node       => Aktif Manager Seç => ( docker swarm init --advertise-addr 192.168.0.13 )
+Aktif Manager node iken => Pasif Manager Seç => ( docker swarm join-token manager ) docker swarm join --token SWMTKN-1-4pihi7pb25k8szb0q9wggj96iz48wfoxxbkw03h21gg5dho56r-exe7al8bhf4ep977xbqjtqd13 192.168.0.13:2377
+Aktif Manager node iken => Workerlar Seç     => ( docker swarm join-token worker )  docker swarm join --token SWMTKN-1-4pihi7pb25k8szb0q9wggj96iz48wfoxxbkw03h21gg5dho56r-doff0ak6q3zgqsan2apjhp78k 192.168.0.13:2377
+
+
+2.ADIM 
+-------------
+Pasif Manager için ID: 192.168.12 IP git => docker swarm join --token SWMTKN-1-4pihi7pb25k8szb0q9wggj96iz48wfoxxbkw03h21gg5dho56r-exe7al8bhf4ep977xbqjtqd13 192.168.0.13:2377
+Pasif Manager için ID: 192.168.11 IP git => docker swarm join --token SWMTKN-1-4pihi7pb25k8szb0q9wggj96iz48wfoxxbkw03h21gg5dho56r-exe7al8bhf4ep977xbqjtqd13 192.168.0.13:2377
+
+Worker  için ID: 192.168.10 IP git => docker swarm join --token SWMTKN-1-4pihi7pb25k8szb0q9wggj96iz48wfoxxbkw03h21gg5dho56r-doff0ak6q3zgqsan2apjhp78k 192.168.0.13:2377
+Worker  için ID: 192.168.9 IP git => docker swarm join --token SWMTKN-1-4pihi7pb25k8szb0q9wggj96iz48wfoxxbkw03h21gg5dho56r-doff0ak6q3zgqsan2apjhp78k 192.168.0.13:2377
+
+
+3.ADIM 
+-------------
+docker node ls (Aktif veya Pasif managerde bu komutu sadece çalıştırabilirsin)
+docker service create --name web_server -p 7777:80 --replicas=9 nginx (aktif veya pasif managerde seçmelisiniz)
+
+docker service ls 
+docker service ps web_server
+
+
+docker ps 
+docker container rm -f containerID
+docker node ls
+docker service ps web_server
+
+------------------------------------
+-- Network --
+
+
+------------------------------------
+------------------------------------
+------------------------------------
+SonarQube
+Grafana / Prometheus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					Docker
+
+→ Install Docker Engine on Ubuntu
+     I. Install using the apt repository
+     
+        1. Set up Docker's apt repository.
+	# Add Docker's official GPG key:
+	sudo apt-get update
+	sudo apt-get install ca-certificates curl
+	sudo install -m 0755 -d /etc/apt/keyrings
+	sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+	sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+	# Add the repository to Apt sources:
+	echo \
+	  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+	  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+	  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt-get update
+
+	2. Install the Docker packages.
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	
+	3. Verify that the Docker Engine installation is successful by running the hello-world image.
+	sudo docker run hello-world
+	
+
+     II. Install from a package
+     
+	If you can't use Docker's apt repository to install Docker Engine, you can download the deb file for your release and install it
+	manually. You need to download a new file each time you want to upgrade Docker Engine.
+
+	1. Go to https://download.docker.com/linux/ubuntu/dists/.
+
+	2. Select your Ubuntu version in the list.
+
+	3. Go to pool/stable/ and select the applicable architecture (amd64, armhf, arm64, or s390x).
+
+	4. Download the following deb files for the Docker Engine, CLI, containerd, and Docker Compose packages:
+		• containerd.io_<version>_<arch>.deb
+		• docker-ce_<version>_<arch>.deb
+		• docker-ce-cli_<version>_<arch>.deb
+		• docker-buildx-plugin_<version>_<arch>.deb
+		• docker-compose-plugin_<version>_<arch>.deb
+		
+	5. Install the .deb packages. Update the paths in the following example to where you downloaded the Docker packages.
+
+		 sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
+		  ./docker-ce_<version>_<arch>.deb \
+		  ./docker-ce-cli_<version>_<arch>.deb \
+		  ./docker-buildx-plugin_<version>_<arch>.deb \
+		  ./docker-compose-plugin_<version>_<arch>.deb
+		  
+		The Docker daemon starts automatically.
+
+	6. Verify that the Docker Engine installation is successful by running the hello-world image.
+
+		 sudo service docker start
+		 sudo docker run hello-world
+		 
+		This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message
+		and exits.
+		
+		
+		
+		
+→ Install Docker Desktop
+
+Recommended approach to install Docker Desktop on Ubuntu:
+
+1. Set up Docker's package repository. See step one of Install using the apt repository.
+
+2. Download latest DEB package. --> https://desktop.docker.com/linux/main/amd64/139021/docker-desktop-4.28.0-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64&_gl=1*s7tjx0*_ga*MTAyMDY3MTU3MS4xNzA5MDY1MTQ2*_ga_XJWPQMJYHQ*MTcwOTA2NTE0NS4xLjEuMTcwOTA2Njg4MC42MC4wLjA.
+
+3. Install the package with apt as follows:
+
+	 sudo apt-get update
+	 sudo apt-get install ./docker-desktop-<version>-<arch>.deb
+
+
+→ Launch Docker Desktop
+
+• systemctl --user start docker-desktop
+
+• docker compose version
+  Docker Compose version v2.17.3
+
+• docker --version
+  Docker version 23.0.5, build bc4487a
+
+• docker version
+  Client: Docker Engine - Community
+  Cloud integration: v1.0.31
+  Version:           23.0.5
+  API version:       1.42
+  <...>
+  
+• systemctl --user enable docker-desktop
+
+• systemctl --user stop docker-desktop
+
+
+
+-------------------------Docker Desktop sign in -------------------------
+Error: Unable to log in. You must initialize pass before logging in to Docker Desktop
+
+busra@bellis:~$ gpg --full-generate-key
+gpg (GnuPG) 2.2.27; Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Lütfen istediğiniz anahtarı seçiniz:
+   (1) RSA ve RSA (varsayılan)
+   (2) DSA ve Elgamal
+   (3) DSA (yalnız imzalamak için)
+   (4) RSA (sadece imzalamak için)
+  (14) Existing key from card
+Seçiminiz? 1
+RSA anahtarları 1024 bit ile 4096 bit arasında olmalı.
+İstediğiniz anahtar uzunluğu nedir? (3072) 3072
+İstenen anahtar uzunluğu: 3072 bit
+Lütfen anahtarın ne kadar süreyle geçerli olacağını belirtin.
+         0 = anahtar süresiz geçerli
+      <n>  = anahtar n gün geçerli
+      <n>w = anahtar n hafta geçerli
+      <n>m = anahtar n ay geçerli
+      <n>y = anahtar n yıl geçerli
+Anahtar ne kadar geçerli olacak? (0) 0
+Anahtar hep geçerli olacak
+Bu doğru mu? (e/H ya da y/N) y
+
+GnuPG anahtarınızı betimlemek için bir kullanıcı kimliği oluşturmaya ihtiyaç duyuyor.
+
+Adınız ve Soyadınız: busra
+E-posta adresiniz: busra@gmail.com
+Önbilgi: 
+Seçtiğiniz KULLANICI-KİMLİĞİ:
+    "busra <busra@gmail.com>"
+
+(A)dı ve Soyadı, (Y)orum, (E)posta alanlarını değiştir ya da (T)amam/Çı(k)? T
+Bir miktar rasgele bayt üretilmesi gerekiyor. İlk üretim sırasında biraz
+hareket (klavyeyi kullanmak, fareyi hareket ettirmek, disklerden yararlanmak)
+iyi olacaktır; bu yeterli rasgele bayt kazanmak için rasgele sayı
+üretecine yardımcı olur.
+Bir miktar rasgele bayt üretilmesi gerekiyor. İlk üretim sırasında biraz
+hareket (klavyeyi kullanmak, fareyi hareket ettirmek, disklerden yararlanmak)
+iyi olacaktır; bu yeterli rasgele bayt kazanmak için rasgele sayı
+üretecine yardımcı olur.
+gpg: anahtar xxxxxxxxxxxxxxxx son derece güvenli olarak imlendi.
+gpg: directory '/home/busra/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/busra/.gnupg/openpgp-revocs.d/888XXXXXXXX88XXXXXXXX88888XXXXXXXXXXXXXX.rev'
+genel ve gizli anahtar üretildi ve imzalandı.
+
+pub   rsa3072 2024-02-26 [SC]
+      888XXXXXXXX88XXXXXXXX88888XXXXXXXXXXXXXX
+uid                      busraselimoglu <busra.selimogluu@gmail.com>
+sub   rsa3072 2024-02-26 [E]
+
+
+busra@bellis:~$ export GPGKEY=<xxxxxxxxxxxxxxxx>
+busra@bellis:~$ pass init 888XXXXXXXX88XXXXXXXX88888XXXXXXXXXXXXXX
+
+Daha sonra Docker Desktop uygulamasını yeniden başlatı ve sign in butonuna tıklayın
+-----------------------------Services------------------------------
+
+→ Başlatılamayan sistem hizmetlerini bulmak için;
+	systemctl --failed
+	
+→ Systemd-modules-load hizmetiyle ilgili bir sorun bulundu. Daha fazlasını bilmek için;
+	systemctl status systemd-modules-load  
+	
+→ Başarısız mesajı yeniden oluşturmak gerekirse hizmeti yeniden başlatın;
+	systemctl restart systemd-modules-load
+
+→ Çalışan tüm servisleri görüntüleme	
+	systemctl list-units --type service --state running
+--------------------------------------------------------------------------
+→ apache2.service failed 
+
+× apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Tue 2024-02-27 15:58:12 +03; 30min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+        CPU: 62ms
+        
+sudo netstat -ltnp | grep ':80'
+
+Output: tcp6 0 0 :::80 :::* LISTEN 1500/apache2
+
+sudo kill 1500
+sudo service apache2 restart
+
+→ 
+→ Bios önyükleme temizliği
+	root@bellis:/home/busra/Masaüstü/notlar/xampp# efibootmgr
+	BootCurrent: 0003
+	Timeout: 0 seconds
+	BootOrder: 0003,0018,0002,0001,0000,0014,0015,0016,0017,0019,001A
+	Boot0000* Windows Boot Manager
+	Boot0001* ubuntu
+	Boot0002* ubuntu
+	Boot0003* ubuntu
+	Boot0010  Setup
+	Boot0011  Boot Menu
+	Boot0012  Diagnostic Splash
+	Boot0013  OilDiagApp
+	Boot0014* USB FDD:
+	Boot0015* NVMe:
+	Boot0016* ATA HDD: KIOXIA-EXCERIA SATA SSD                 
+	Boot0017* ATAPI CD:
+	Boot0018* USB HDD:
+	Boot0019* USB CD:
+	Boot001A* PCI LAN: Realtek PXE B03 D00
+	root@bellis:/home/busra/Masaüstü/notlar/xampp# sudo efibootmgr -b 0003 -B
+	BootCurrent: 0003
+	Timeout: 0 seconds
+	BootOrder: 0018,0002,0001,0000,0014,0015,0016,0017,0019,001A
+	Boot0000* Windows Boot Manager
+	Boot0001* ubuntu
+	Boot0002* ubuntu
+	Boot0010  Setup
+	Boot0011  Boot Menu
+	Boot0012  Diagnostic Splash
+	Boot0013  OilDiagApp
+	Boot0014* USB FDD:
+	Boot0015* NVMe:
+	Boot0016* ATA HDD: KIOXIA-EXCERIA SATA SSD                 
+	Boot0017* ATAPI CD:
+	Boot0018* USB HDD:
+	Boot0019* USB CD:
+	Boot001A* PCI LAN: Realtek PXE B03 D00
+
+
+→ Enable Minimize on Dock Click (Açılan pencereyi icon'a tıklayınca küçülmesi)
+	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+
+→ Install pulseaudio volume control
+	sudo apt update
+	sudo apt install pavucontrol
+	
+→ Install ubuntu-cleaner
+	sudo add-apt-repository ppa:gerardpuig/ppa
+	sudo apt update
+	sudo apt install ubuntu-cleaner
+
+→ sudo apt install gzip     => (sıkıştırma)
+
+→ sudo apt install leafpad  => (notepad)
+
+→ sudo apt install vim      => (editor)
+
+→ sudo apt install net-tools
+
+→ sudo apt install -f       =>(Kurduğumuz dosyada eksikler varsa onlar bulup yükler)
+
+→ sudo apt install curl -y  --> Böyle bir site var mı kontrol eder
+
+→ sudo apt-get install unrar -y 
+
+→ sudo apt-get install rar
+
+→ sudo apt-get install openssh-server -y
+
+→ sudo apt-get install nginx -y
+
+→ sudo snap install heroku --classic
+
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+→ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+→ PostgreSQL Kurulumu
+
+# Create the file repository configuration:
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+# Import the repository signing key:
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+# Update the package lists:
+sudo apt-get update
+
+# Install the latest version of PostgreSQL.
+# If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
+sudo apt-get -y install postgresql
+
+
+For more information about the apt repository, including answers to frequent questions, please see the PostgreSQL Apt Repository page on the wiki. (https://wiki.postgresql.org/wiki/Apt)
+
+Included in distribution
+Ubuntu includes PostgreSQL by default. To install PostgreSQL on Ubuntu, use the apt-get (or other apt-driving) command:
+
+apt-get install postgresql-12
+The repository contains many different packages including third party addons. The most common and important packages are (substitute the version number as required):
+
+postgresql-client-12	client libraries and client binaries
+postgresql-12	core database server
+libpq-dev	libraries and headers for C language frontend development
+postgresql-server-dev-12	libraries and headers for C language backend development
+
+→ pgadmin Kurulumu
+
+#
+# Setup the repository
+#
+
+# Install the public key for the repository (if not done previously):
+curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+
+# Create the repository configuration file:
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
+#
+# Install pgAdmin
+#
+
+# Install for both desktop and web modes:
+sudo apt install pgadmin4
+
+# Install for desktop mode only:
+sudo apt install pgadmin4-desktop
+
+# Install for web mode only: 
+sudo apt install pgadmin4-web 
+
+# Configure the webserver, if you installed pgadmin4-web:
+sudo /usr/pgadmin4/bin/setup-web.sh
+				XAMPP
+
+https://www.apachefriends.org/tr/index.html
+
+terminalde indirilenler klasörüne git ve aşağıdaki komutları çalıştır.
+
+sudo su
+chmod +x xampp-linux-x64-8.2.12-0-installer.run
+./xampp-linux-x64-8.2.12-0-installer.run
+
+
+→ Bazı eklemeler yapılmalıdır.
+1. php.ini
+	sudo su
+	cd /opt/lampp/etc
+	nano php.ini
+
+	Aşağıdaki kodu /opt/lampp/etc/php.ini dosyanın sonuna ekle.
+
+	display_startup_errors     = On
+	display_errors             = On
+	upload_max_filesize        = 128M
+	upload_max_size            = 128M
+	post_max_size              = 128M
+	max_input_vars             = 5000
+	memory_limit               = -1
+	error_reporting            = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING
+	mbstring.language          = Turkish
+	mbstring.internal_encoding = UTF-8
+
+2. my.ini
+	sudo su
+	cd /opt/lampp/etc
+	nano my.ini
+	
+	Aşağıdaki kodu /opt/lampp/etc/my.ini dosyanın sonuna ekle.
+	
+	sql_mode=''
+	
+→ MySQL içerisine girebilmek için: mysql
+
+→ MySQL içerisinden çıkabilmek için: exit;
+
+→ MySQL Root kullanıcısı için şifre değiştirme
+
+	Aşağıdaki komutlar sırası ile yazılarak MySQL Root kullanıcısının şifresinin değiştirilmesi sağlanır
+		mysql -u root -p
+		SET PASSWORD FOR 'root'@'localhost' = PASSWORD("root"); veya ALTER USER 'root'@'localhost' IDENTIFIED BY 'PASSWORD_HERE';
+		FLUSH PRIVILEGES;
+		exit;
+
+	# MySQL Yeni kullanıcı ekleme
+		CREATE USER 'dbadmin'@'localhost' IDENTIFIED BY 'dbadmin';
+		GRANT ALL PRIVILEGES ON *.* TO 'dbadmin'@'localhost' WITH GRANT OPTION;
+		FLUSH PRIVILEGES;
+	
+	
+	
+	
+	
+	
+	
+	
+	
