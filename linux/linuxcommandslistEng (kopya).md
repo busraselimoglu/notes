@@ -23,10 +23,10 @@ badblocks -s /dev/[device_name]		| Test for unreadable blocks on the device/disk
 fsck /dev/[device_name]				| Run a disk check on an unmounted disk or partition.
 
 -------------------------------------------------------------------------
-													Searching Commands
+				                          Searching Commands
 
 |			Command                                 | 				Description
-:--------------------------------------------------:|:----------------------------------------------------------------------------:
+:--------------------------------------------------:|:-----------------------------------------------------------------------:
 
 find [path] -name [search_pattern]					| Find files and directories that match the specified pattern in a specified location.
 find [path] -size [+100M]							| See files and directories larger than a specified size in a directory.
@@ -40,7 +40,7 @@ sed 's/[old_text]/[new_text]/' [file_name]			| Find and replace text in a specif
 
 
 -------------------------------------------------------------------------
-													File Commands
+					                 File Commands
 
 
 |			Command                             | 				Description
